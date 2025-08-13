@@ -1,0 +1,4 @@
+stash<br>Backpack=stash<br>Rucksack
+take<br>Backpack=take<br>Rucksack
+r:"^(.+)'s backpack$"="$1's rucksack"
+wear\nbackpack=wear\nrucksack
