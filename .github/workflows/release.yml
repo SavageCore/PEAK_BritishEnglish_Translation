@@ -3,72 +3,72 @@ name: Create Thunderstore Release
 on:
   push:
     tags:
-      - 'v*'  # Triggers on version tags like v1.0.0, v1.2.3, etc.
+      - "v*" # Triggers on version tags like v1.0.0, v1.2.3, etc.
 
 jobs:
   build-and-release:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Get tag name and version
-      id: tag
-      run: |
-        echo "tag_name=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
-        echo "version_number=$(echo ${GITHUB_REF#refs/tags/} | sed 's/^v//')" >> $GITHUB_OUTPUT
+      - name: Get tag name and version
+        id: tag
+        run: |
+          echo "tag_name=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+          echo "version_number=$(echo ${GITHUB_REF#refs/tags/} | sed 's/^v//')" >> $GITHUB_OUTPUT
 
-    - name: Create release directory
-      run: mkdir -p release
+      - name: Create release directory
+        run: mkdir -p release
 
-    - name: Copy files to release directory
-      run: |
-        cp -r BepInEx release/
-        cp CHANGELOG.md release/
-        cp icon.png release/
-        cp manifest.json release/
-        cp README.md release/
+      - name: Copy files to release directory
+        run: |
+          cp -r BepInEx release/
+          cp CHANGELOG.md release/
+          cp icon.png release/
+          cp manifest.json release/
+          cp README.md release/
 
-    - name: Get version number without v prefix
-      id: version
-      run: |
-        version_number=$(echo "${{ steps.tag.outputs.tag_name }}" | sed 's/^v//')
-        echo "number=$version_number" >> $GITHUB_OUTPUT
+      - name: Get version number without v prefix
+        id: version
+        run: |
+          version_number=$(echo "${{ steps.tag.outputs.tag_name }}" | sed 's/^v//')
+          echo "number=$version_number" >> $GITHUB_OUTPUT
 
-    - name: Update "version_number" in manifest.json
-      run: |
-        jq --arg version "${{ steps.version.outputs.number }}" '.version_number = $version' release/manifest.json > release/manifest.json.tmp && mv release/manifest.json.tmp release/manifest.json
+      - name: Update "version_number" in manifest.json
+        run: |
+          jq --arg version "${{ steps.version.outputs.number }}" '.version_number = $version' release/manifest.json > release/manifest.json.tmp && mv release/manifest.json.tmp release/manifest.json
 
-    - name: Create zip file
-      run: |
-        cd release
-        zip -r ../PEAK_BritishEnglish_Translation-${{ steps.version.outputs.number }}.zip .
-        cd ..
+      - name: Create zip file
+        run: |
+          cd release
+          zip -r ../PEAK_BritishEnglish_Translation-${{ steps.version.outputs.number }}.zip .
+          cd ..
 
-    - name: Create GitHub Release
-      id: create_release
-      uses: softprops/action-gh-release@v2
-      with:
-        draft: true
-        generate_release_notes: true
-        prerelease: false
-        files: |
+      - name: Create GitHub Release
+        id: create_release
+        uses: softprops/action-gh-release@v2
+        with:
+          draft: true
+          generate_release_notes: true
+          prerelease: false
+          files: |
             PEAK_BritishEnglish_Translation-${{ steps.version.outputs.number }}.zip
 
-    - name: Upload to Thunderstore
-      uses: GreenTF/upload-thunderstore-package@v4.3
-      with:
-        token: ${{ secrets.THUNDERSTORE_TOKEN }}
-        community: peak
-        namespace: SavageCore
-        name: PEAK BritishEnglish Translation
-        description: British English translation for PEAK
-        version: ${{ steps.version.outputs.number }}
-        file: PEAK_BritishEnglish_Translation-${{ steps.version.outputs.number }}.zip
-        repo: thunderstore.io
-        deps: BepInEx-BepInExPack_PEAK@5.4.2403 Hayrizan-XUnity_AutoTranslator@5.4.5
-        categories: | # <-- notice this pipe character
+      - name: Upload to Thunderstore
+        uses: GreenTF/upload-thunderstore-package@v4.3
+        with:
+          token: ${{ secrets.THUNDERSTORE_TOKEN }}
+          community: peak
+          namespace: SavageCore
+          name: PEAK BritishEnglish Translation
+          description: British English translation for PEAK
+          version: ${{ steps.version.outputs.number }}
+          file: PEAK_BritishEnglish_Translation-${{ steps.version.outputs.number }}.zip
+          repo: thunderstore.io
+          deps: BepInEx-BepInExPack_PEAK-5.4.75301 Hayrizan-XUnity_AutoTranslator@5.4.5
+          categories: |
             client
             translation
 

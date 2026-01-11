@@ -4,7 +4,7 @@
   "website_url": "https://github.com/SavageCore/PEAK_BritishEnglish_Translation",
   "description": "A backpack is something you take to school, a rucksack is something you take climbing. This mod changes backpack to rucksack. Possibly other (more British) changes later.",
   "dependencies": [
-    "BepInEx-BepInExPack_PEAK-5.4.2403",
+    "BepInEx-BepInExPack_PEAK-5.4.75301",
     "Hayrizan-XUnity_AutoTranslator-5.4.5"
   ]
 }
