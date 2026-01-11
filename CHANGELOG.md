@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.2
+
+- Update Auto Translator config to have the correct Directory to load translations from
+
 ## 0.1.1
 
 - Fix repo link on Thunderstore
