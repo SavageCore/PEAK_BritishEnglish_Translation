@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.0
+
+- Added translations for "Luggage" variants to "Suitcase"
+
 ## 0.1.2
 
 - Update Auto Translator config to have the correct Directory to load translations from
