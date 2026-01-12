@@ -29,6 +29,7 @@ jobs:
           cp icon.png release/
           cp manifest.json release/
           cp README.md release/
+          cp LICENSE release/
 
       - name: Get version number without v prefix
         id: version
