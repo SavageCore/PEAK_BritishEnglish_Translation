@@ -1,0 +1,38 @@
+[config]
+schemaVersion = "0.0.1"
+
+[package]
+namespace = "SavageCore"
+name = "PEAK_BritishEnglish_Translation"
+versionNumber = "0.2.0"
+description = "Adds numbers to the hud and other useful information"
+websiteUrl = "https://github.com/SavageCore/PEAK_BritishEnglish_Translation"
+containsNsfwContent = false
+[package.dependencies]
+BepInEx-BepInExPack_PEAK = "5.4.75301"
+Hayrizan-XUnity_AutoTranslator = "5.4.5"
+
+
+[build]
+icon = "./icon.png"
+readme = "./README.md"
+outdir = "./build"
+
+[[build.copy]]
+source = "./LICENSE"
+target = "./"
+
+[[build.copy]]
+source = "./CHANGELOG.md"
+target = "./"
+
+[[build.copy]]
+source = "./BepInEx"
+target = "./BepInEx"
+
+
+[publish]
+repository = "https://thunderstore.io"
+communities = [ "peak", ]
+[publish.categories]
+peak = [ "client", "translation", ]
