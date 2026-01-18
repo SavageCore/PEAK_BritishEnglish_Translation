@@ -5,7 +5,7 @@ schemaVersion = "0.0.1"
 namespace = "SavageCore"
 name = "PEAK_BritishEnglish_Translation"
 versionNumber = "0.2.0"
-description = "Adds numbers to the hud and other useful information"
+description = "A backpack is something you take to school, a rucksack is something you take climbing. This mod changes backpack to rucksack. Possibly other (more British) changes later."
 websiteUrl = "https://github.com/SavageCore/PEAK_BritishEnglish_Translation"
 containsNsfwContent = false
 [package.dependencies]
@@ -33,6 +33,6 @@ target = "./BepInEx"
 
 [publish]
 repository = "https://thunderstore.io"
-communities = [ "peak", ]
+communities = ["peak"]
 [publish.categories]
-peak = [ "client", "translation", ]
+peak = ["client", "translation"]
