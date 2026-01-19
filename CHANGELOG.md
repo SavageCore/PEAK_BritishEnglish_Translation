@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1
+
+- Fixed an issue where "Person's Backpack" was not being translated to "Person's Rucksack"
+
 ## 0.2.0
 
 - Added translations for "Luggage" variants to "Suitcase"
